@@ -1,4 +1,11 @@
-<?php include("config/db_connect.php")?>
+<?php 
+include("config/db_connect.php");
+$sql = "SELECT * FROM types";
+$statement = $pdo->prepare($sql);
+$statement-> execute();
+$types = $statement ->fetchAll();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,7 +231,7 @@
                   </thead>
                   <tbody>
                     <?php 
-                      $i = 0;
+                      $i = 1;
                       foreach ($types as $type) {
                         $id = $type['id'];
                         $name = $type['name'];
