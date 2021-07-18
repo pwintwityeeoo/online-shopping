@@ -63,7 +63,7 @@ $types = $statement->fetchAll();
                       <td><?php echo $name ?></td>
                       <td class="text-right">
                         <a href="type_edit.php?id=<?php echo $id ?>" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="type_delete.php?id=<?php echo $id ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                       </td>
                     </tr>
                   <?php } ?>

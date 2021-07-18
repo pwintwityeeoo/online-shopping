@@ -4,7 +4,11 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM types WHERE id = $id";
 $statement = $pdo->prepare($sql);
 $statement->execute();
-$types = $statement->fetchAll();
+$types = $statement->fetchAll(PDO::FETCH_ASSOC);
+foreach ($types as $type) {
+  echo $type['id'] . '<br>';
+  echo $type['name'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +50,7 @@ $types = $statement->fetchAll();
             <div class="card">
                 <div class="card-body">
                   <form class="forms-sample" action="type_update.php" method="POST">
+                  <input type="hidden" name="id" value="<?php echo $type['id'] ?>">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">Type Name</label>
                       <div class="col-sm-9">
