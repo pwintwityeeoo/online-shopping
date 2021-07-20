@@ -1,9 +1,9 @@
 <?php
 include("config/db_connect.php");
-$sql = "SELECT * FROM types";
+$sql = "SELECT items.*, subcategories.id as subcategory_id, subcategories.name as subcategory_name FROM items INNER JOIN subcategories ON items.subcategory_id = subcategories.id";
 $statement = $pdo->prepare($sql);
 $statement->execute();
-$types = $statement->fetchAll();
+$items = $statement->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -18,6 +18,7 @@ $types = $statement->fetchAll();
   <link rel="stylesheet" href="css/all.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,9 +36,9 @@ $types = $statement->fetchAll();
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Types List</h4>
+                  <h4 class="font-weight-bold mb-0">SubCategory List</h4>
                 </div>
-                <a href="type_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button></a>
+                <a href="item_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button></a>
               </div>
             </div>
           </div>
@@ -48,29 +49,41 @@ $types = $statement->fetchAll();
                   <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>CodeNo</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Subcategory</th>
                     <th col-span="2"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $i = 1;
-                  foreach ($types as $type) {
-                    $id = $type['id'];
-                    $name = $type['name'];
+                  $i =1;
+                  foreach ($items as $item) {
+                    $id = $item['id'];
+                    $name = $item['name'];
+                    $codeno = $item['codeno'];
+                    $price = $item['price'];
+                    $discount = $item['discount'];
+                    $subcategory_name = $item['subcategory_name'];
                   ?>
                     <tr>
                       <td><?php echo $i++; ?></td>
                       <td><?php echo $name ?></td>
-                      <td class="text-right">
-                        <a href="type_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <form class="d-inline-block" action="type_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
-                          <input type="hidden" name="id"  value="<?php echo $id; ?>">
-                          <button type="DELETE" class="btn btn-danger">
-                          <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </form>
-                        
-                      </td>
+                      <td><?php echo $codeno ?></td>
+                      <td><?php echo $price ?></td>
+                      <td class="prd-discount"><?php echo $discount ?></td>
+                      <td><?php echo $subcategory_name ?></td>
+                      <td>
+                      <a href="item_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+
+                      <form class="d-inline-block" action="item_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <button type="DELETE" class="btn btn-danger" type="submit" value="DELETE">
+                        <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </form>
+                    </td>
                     </tr>
                   <?php } ?>
                 </tbody>

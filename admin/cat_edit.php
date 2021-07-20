@@ -1,3 +1,12 @@
+<?php
+include("config/db_connect.php");
+$id = $_GET['id'];
+$sql = "SELECT * FROM categories WHERE id=:value1";
+$statement = $pdo->prepare($sql);
+$statement->bindParam(':value1',$id);
+$statement->execute();
+$categories = $statement->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,14 +44,37 @@
           <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="type_add.php" method="POST">
+                  <form class="forms-sample" action="cat_update.php" method="POST">
+                  <input type="hidden" name="id" value="<?php echo $categories['id'] ?>">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Type Name</label>
+                      <label for="name" class="col-sm-3 col-form-label">Category Name</label>
                       <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Type Name">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Category Name" value="<?php echo $categories['name']?>">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Add</button>
+                    <div class="form-group row">
+                      <label for="type_id" class="col-sm-3 col-form-label">Choose Type</label>
+                      <div class="col-sm-9">
+                        <select name="type_id" class="form-control">
+                          <?php
+                          include("config/db_connect.php");
+                          $sql = "SELECT * FROM types";
+                          $statement = $conn->prepare($sql);
+                          $statement->execute();
+                          $types = $statement->fetchAll();
+
+                          foreach ($types as $type) {
+                            $type_id = $type['id'];
+                            $type_name = $type['name'];  
+                          ?>
+                          <option value="<?= $type_id ?>" <?php if($type_id == $categories['type_id']){ echo "selected";}?>>
+                          <?php echo $type_name; ?>
+                          </option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>

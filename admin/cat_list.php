@@ -1,9 +1,9 @@
 <?php
 include("config/db_connect.php");
-$sql = "SELECT * FROM types";
+$sql = "SELECT categories.*, types.id as type_id, types.name as type_name FROM categories INNER JOIN types ON categories.type_id = types.id";
 $statement = $pdo->prepare($sql);
 $statement->execute();
-$types = $statement->fetchAll();
+$categories = $statement->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -26,8 +26,8 @@ $types = $statement->fetchAll();
     <?php include("config/header.php");?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-    <!--sidebar_index-->
-    <?php include("config/sidebar_index.php");?>
+      <!--sidebar_index-->
+      <?php include("config/sidebar_index.php");?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -37,42 +37,50 @@ $types = $statement->fetchAll();
                 <div>
                   <h4 class="font-weight-bold mb-0">Types List</h4>
                 </div>
-                <a href="type_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button></a>
+                <a href="cat_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button></a>
               </div>
             </div>
           </div>
           <div class="row">
+
             <div class="table-responsive col-md-12">
-              <table class="table">
+              <table class="table text-center">
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <!--<th>Type_id</th>-->
+                    <th>Type_name</th>
                     <th col-span="2"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   $i = 1;
-                  foreach ($types as $type) {
-                    $id = $type['id'];
-                    $name = $type['name'];
+                  foreach($categories as $category){
+                    $id = $category['id'];
+                    $name = $category['name'];
+
+                    $type_id = $category['type_id'];
+                    $type_name = $category['type_name'];
+                 
                   ?>
-                    <tr>
-                      <td><?php echo $i++; ?></td>
-                      <td><?php echo $name ?></td>
-                      <td class="text-right">
-                        <a href="type_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <form class="d-inline-block" action="type_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
-                          <input type="hidden" name="id"  value="<?php echo $id; ?>">
-                          <button type="DELETE" class="btn btn-danger">
-                          <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </form>
-                        
-                      </td>
-                    </tr>
-                  <?php } ?>
+                  <tr>
+                    <td><?php echo $i++ ?></td>
+                    <td><?php echo $name ?></td>
+                    <td><?php echo $type_name ?></td>
+                    <td>
+                      <a href="cat_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+
+                      <form class="d-inline-block" action="cat_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <button type="DELETE" class="btn btn-danger" type="submit" value="DELETE">
+                        <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+               <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -80,8 +88,8 @@ $types = $statement->fetchAll();
           </div>
         </div>
         <!-- content-wrapper ends -->
-    <!--footer-->
-    <?php include("config/footer.php");?>
+        <!--footer-->
+        <?php include("config/footer.php");?>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

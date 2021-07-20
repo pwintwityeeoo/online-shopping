@@ -1,14 +1,12 @@
 <?php
 include("config/db_connect.php");
 $id = $_GET['id'];
-$sql = "SELECT * FROM types WHERE id = $id";
-$statement = $pdo->prepare($sql);
+$sql = "SELECT * FROM types WHERE id=:value1";
+$statement = $conn->prepare($sql);
+$statement->bindParam(':value1',$id);
 $statement->execute();
-$types = $statement->fetchAll(PDO::FETCH_ASSOC);
-foreach ($types as $type) {
-  echo $type['id'] . '<br>';
-  echo $type['name'];
-}
+$types = $statement->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +48,11 @@ foreach ($types as $type) {
             <div class="card">
                 <div class="card-body">
                   <form class="forms-sample" action="type_update.php" method="POST">
-                  <input type="hidden" name="id" value="<?php echo $type['id'] ?>">
+                  <input type="hidden" name="id" value="<?php echo $types['id'] ?>">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">Type Name</label>
                       <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Type Name" value="<?php echo $type['name']; ?>">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Type Name" value="<?php echo $types['name']; ?>">
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
