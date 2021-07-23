@@ -6,8 +6,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>RoyalUI Admin</title>
-  <link rel="stylesheet" href="css/all.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/all.css">
+
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,41 +38,11 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="item_add.php" method="post">
-                    <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Name</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" placeholder="Item Name">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="codeno" class="col-sm-3 col-form-label">Code No</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="codeno" class="form-control">
-                      </div>
-                    </div>
-                    <!--<div class="form-group row">
-                      <label for="cover" class="col-sm-3 col-form-label">Photo</label>
-                      <div class="col-md-9">
-                        <input type="file" name="cover" class="form-control">
-                      </div>
-                    </div>-->
-                    <div class="form-group row">
-                      <label for="price" class="col-sm-3 col-form-label">Price</label>
-                      <div class="col-md-9">
-                        <input type="text" name="price" class="form-control">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="discount" class="col-sm-3 col-form-label">Discount</label>
-                      <div class="col-md-9">
-                        <input type="text" name="discount" class="form-control">
-                      </div>
-                    </div>
-                    <div class="form-group row">
+                  <form class="forms-sample" action="item_add.php" method="post" enctype="multipart/form-data">
+                  <div class="form-group row">
                       <label for="subcategory_id" class="col-sm-3 col-form-label">Subcategory</label>
                       <div class="col-md-9">
-                      <select name="subcategory_id" class="form-control form-select" aria-label="Default select example">
+                        <select name="subcategory_id" class="form-control form-select" aria-label="Default select example">
                           <?php
                           include("config/db_connect.php");
                           //for types
@@ -93,119 +64,87 @@
                         </select>
                       </div>
                     </div>
-                    <!--<div class="form-group row">
-                      <label for="color" class="col-sm-3 col-form-label">Cloth Size</label>
-                      <div class="col-sm-9 d-flex">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-S" value="">
-                          <label class="form-check-label" for="size-S">S</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-M" value="">
-                          <label class="form-check-label" for="size-M">M</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-L" value="">
-                          <label class="form-check-label" for="size-L">L</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-XL" value="">
-                          <label class="form-check-label" for="size-XL">XL</label>
-                        </div>
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-3 col-form-label">Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="name" class="form-control" placeholder="Item Name">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="color" class="col-sm-3 col-form-label">Avaliable Color</label>
-                      <div class="col-sm-9 d-flex">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-35" value="">
-                          <label class="form-check-label" for="size-35">red</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-36" value="">
-                          <label class="form-check-label" for="size-36">green</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-37" value="">
-                          <label class="form-check-label" for="size-37">black</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-38" value="">
-                          <label class="form-check-label" for="size-38">orange</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-39" value="">
-                          <label class="form-check-label" for="size-39">purpel</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-40" value="">
-                          <label class="form-check-label" for="size-40">white</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-41" value="">
-                          <label class="form-check-label" for="size-41">blue</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-42" value="">
-                          <label class="form-check-label" for="size-42">skyblue</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-43" value="">
-                          <label class="form-check-label" for="size-43">grey</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-44" value="">
-                          <label class="form-check-label" for="size-44">pink</label>
-                        </div>
+                      <label for="codeno" class="col-sm-3 col-form-label">Code No</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="codeno" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="color" class="col-sm-3 col-form-label">Shoe Size</label>
-                      <div class="col-sm-9 d-flex">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-35" value="">
-                          <label class="form-check-label" for="size-35">35</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-36" value="">
-                          <label class="form-check-label" for="size-36">36</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-37" value="">
-                          <label class="form-check-label" for="size-37">37</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-38" value="">
-                          <label class="form-check-label" for="size-38">38</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-39" value="">
-                          <label class="form-check-label" for="size-39">39</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-40" value="">
-                          <label class="form-check-label" for="size-40">40</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-41" value="">
-                          <label class="form-check-label" for="size-41">41</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-42" value="">
-                          <label class="form-check-label" for="size-42">42</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-43" value="">
-                          <label class="form-check-label" for="size-43">43</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="size-44" value="">
-                          <label class="form-check-label" for="size-44">44</label>
-                        </div>
+                      <label for="cover" class="col-sm-3 col-form-label">Cover</label>
+                      <div class="col-md-9">
+                        <input type="file" name="cover" id="cover" class="form-control">
                       </div>
-                    </div>-->
+                    </div>
+                    <div class="form-group row">
+                      <label for="price" class="col-sm-3 col-form-label">Price</label>
+                      <div class="col-md-9">
+                        <input type="text" name="price" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="discount" class="col-sm-3 col-form-label">Discount</label>
+                      <div class="col-md-9">
+                        <input type="text" name="discount" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="sizeno_id" class="col-sm-3 col-form-label">ClothSize</label>
+                      <div class="col-md-9 d-flex align-items-center">
+                        <?php
+                          include("config/db_connect.php");
+                          $sql_type = "SELECT * FROM cloth_sizes";
+                          $statement = $conn->prepare($sql_type);
+                          $statement->execute();
+                          $cloth_sizes = $statement->fetchAll();
+                          
+
+                          foreach ($cloth_sizes as $cloth_size) { 
+                            $sizeno_id = $cloth_size['id'];
+                            $sizeno_name = $cloth_size['sizeno']; 
+                          ?>
+
+                          <div class="d-flex"  style="width: 10%";>
+                            <input name="sizeno_id" class="form-check-input" type="checkbox" value="<?php echo $sizeno_id; ?>">
+                            <labe for="sizeno_id" class="form-check-label"><?php echo $sizeno_name; ?></label>
+                          </div>
+
+                          <?php } ?>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="sizeno_id" class="col-sm-3 col-form-label">ShoeSize</label>
+                      <div class="col-md-9 d-flex align-items-center">
+                        <?php
+                          include("config/db_connect.php");
+                          $sql_type = "SELECT * FROM shoe_sizes";
+                          $statement = $conn->prepare($sql_type);
+                          $statement->execute();
+                          $shoe_sizes = $statement->fetchAll();
+
+                          foreach ($shoe_sizes as $shoe_size) { 
+                            $shoesize_id = $shoe_size['id'];
+                            $shoesize_name = $shoe_size['sizeno']; 
+                          ?>
+
+                          <div class="d-flex"  style="width: 10%";>
+                            <input name="" class="form-check-input" type="checkbox" value="<?php //echo $shoesize_id; ?>">
+                            <labe for="" class="form-check-label"><?php //echo $shoesize_name; ?></label>
+                          </div>
+
+                          <?php } ?>
+                      </div>
+                    </div>
+                    <div class="text-right">
                     <button type="submit" class="btn btn-primary mr-2">Add</button>
                     <button class="btn btn-light">Cancel</button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -214,8 +153,8 @@
         </div>
 
         <!-- content-wrapper ends -->
-    <!--footer-->
-    <?php include("config/footer.php");?>
+        <!--footer-->
+        <?php include("config/footer.php");?>
       </div>
       <!-- partial -->
     </div>

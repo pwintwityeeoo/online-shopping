@@ -1,6 +1,6 @@
 <?php
 include("config/db_connect.php");
-$sql = "SELECT items.*, subcategories.id as subcategory_id, subcategories.name as subcategory_name FROM items INNER JOIN subcategories ON items.subcategory_id = subcategories.id";
+$sql = "SELECT items.*, subcategories.id as subcategory_id, subcategories.name as subcategory_name, cloth_sizes.id as sizeno_id, cloth_sizes.sizeno as sizeno_name FROM items INNER JOIN subcategories ON items.subcategory_id = subcategories.id INNER JOIN cloth_sizes ON items.sizeno_id = cloth_sizes.id";
 $statement = $pdo->prepare($sql);
 $statement->execute();
 $items = $statement->fetchAll();
@@ -27,8 +27,8 @@ $items = $statement->fetchAll();
     <?php include("config/header.php");?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-    <!--sidebar_index-->
-    <?php include("config/sidebar_index.php");?>
+      <!--sidebar_index-->
+      <?php include("config/sidebar_index.php");?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -50,42 +50,54 @@ $items = $statement->fetchAll();
                     <th>#</th>
                     <th>Name</th>
                     <th>CodeNo</th>
+                    <th>Cover</th>
                     <th>Price</th>
                     <th>Discount</th>
+                    <th>ClothSize</th>
                     <th>Subcategory</th>
                     <th col-span="2"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $i =1;
+                    $i =1;
                   foreach ($items as $item) {
                     $id = $item['id'];
                     $name = $item['name'];
                     $codeno = $item['codeno'];
+                    $cover = $item['cover'];
                     $price = $item['price'];
                     $discount = $item['discount'];
+                    $sizeno_id = $item['sizeno_id'];
+                    $sizeno_name = $item['sizeno_name'];
                     $subcategory_name = $item['subcategory_name'];
                   ?>
-                    <tr>
-                      <td><?php echo $i++; ?></td>
-                      <td><?php echo $name ?></td>
-                      <td><?php echo $codeno ?></td>
-                      <td><?php echo $price ?></td>
-                      <td class="prd-discount"><?php echo $discount ?></td>
-                      <td><?php echo $subcategory_name ?></td>
-                      <td>
+
+                  <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $name ?></td>
+                    <td><?php echo $codeno ?></td>
+                    <td>
+                    <img src="covers/<?php echo $cover ?>" alt="" height="140">
+                    </td>
+                    <td><?php echo $price ?></td>
+                    <td class="prd-discount"><?php echo $discount ?></td>
+                    <td><?php echo $sizeno_name ?></td>
+                    <td><?php echo $subcategory_name ?></td>
+                    <td>
                       <a href="item_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
 
                       <form class="d-inline-block" action="item_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <button type="DELETE" class="btn btn-danger" type="submit" value="DELETE">
-                        <i class="fas fa-trash-alt"></i>
+                          <i class="fas fa-trash-alt"></i>
                         </button>
                       </form>
                     </td>
-                    </tr>
+                  </tr>
                   <?php } ?>
+                  
+                 
                 </tbody>
               </table>
             </div>
@@ -93,8 +105,8 @@ $items = $statement->fetchAll();
           </div>
         </div>
         <!-- content-wrapper ends -->
-    <!--footer-->
-    <?php include("config/footer.php");?>
+        <!--footer-->
+        <?php include("config/footer.php");?>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

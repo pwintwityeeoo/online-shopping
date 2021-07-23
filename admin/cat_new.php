@@ -35,11 +35,17 @@
           <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="cat_add.php" method="POST">
+                  <form class="forms-sample" action="cat_add.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">Category Name</label>
                       <div class="col-sm-9">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Category Name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                    <label for="cover"  class="col-sm-3 col-form-label">Cover</label>
+                      <div class="col-sm-9">
+                      <input type="file" name="cover" id="cover" class="form-control" >
                       </div>
                     </div>
                     <div class="form-group row">

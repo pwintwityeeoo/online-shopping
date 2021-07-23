@@ -20,14 +20,15 @@ $categories = $statement->fetch(PDO::FETCH_ASSOC);
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!--header-->
     <?php include("config/header.php");?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-    <!--sidebar_index-->
-    <?php include("config/sidebar_index.php");?>
+      <!--sidebar_index-->
+      <?php include("config/sidebar_index.php");?>
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
@@ -41,11 +42,11 @@ $categories = $statement->fetch(PDO::FETCH_ASSOC);
             </div>
           </div>
           <div class="row">
-          <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="cat_update.php" method="POST">
-                  <input type="hidden" name="id" value="<?php echo $categories['id'] ?>">
+                  <form class="forms-sample" action="cat_update.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?php echo $categories['id'] ?>">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">Category Name</label>
                       <div class="col-sm-9">
@@ -55,7 +56,7 @@ $categories = $statement->fetch(PDO::FETCH_ASSOC);
                     <div class="form-group row">
                       <label for="type_id" class="col-sm-3 col-form-label">Choose Type</label>
                       <div class="col-sm-9">
-                        <select name="type_id" class="form-control">
+                        <select name="type_id" id="type_id" class="form-control">
                           <?php
                           include("config/db_connect.php");
                           $sql = "SELECT * FROM types";
@@ -68,14 +69,25 @@ $categories = $statement->fetch(PDO::FETCH_ASSOC);
                             $type_name = $type['name'];  
                           ?>
                           <option value="<?= $type_id ?>" <?php if($type_id == $categories['type_id']){ echo "selected";}?>>
-                          <?php echo $type_name; ?>
+                            <?php echo $type_name; ?>
                           </option>
                           <?php } ?>
                         </select>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <div class="form-group">
+                      <div class="row align-items-center">
+                        <label for="cover" class="col-sm-3 col-form-label">Cover</label>
+                        <div class="col-sm-9">
+                          <img src="covers/<?php echo $categories['cover'] ?>" alt="" height="150">
+                          <input type="file" name="cover" id="cover" class="d-block mt-3">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
+                      <button class="btn btn-light">Cancel</button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -83,8 +95,8 @@ $categories = $statement->fetch(PDO::FETCH_ASSOC);
           </div>
         </div>
         <!-- content-wrapper ends -->
-    <!--footer-->
-    <?php include("config/footer.php");?>
+        <!--footer-->
+        <?php include("config/footer.php");?>
 
         <!-- partial -->
       </div>

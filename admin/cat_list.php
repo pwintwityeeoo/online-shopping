@@ -49,8 +49,8 @@ $categories = $statement->fetchAll();
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <!--<th>Type_id</th>-->
-                    <th>Type_name</th>
+                    <th>Type</th>
+                    <th>Cover</th>
                     <th col-span="2"></th>
                   </tr>
                 </thead>
@@ -63,24 +63,29 @@ $categories = $statement->fetchAll();
 
                     $type_id = $category['type_id'];
                     $type_name = $category['type_name'];
+
+                    $cover = $category['cover'];
                  
                   ?>
                   <tr>
                     <td><?php echo $i++ ?></td>
-                    <td><?php echo $name ?></td>
+                    <td class="cat-name"><?php echo $name ?></td>
                     <td><?php echo $type_name ?></td>
+                    <td>
+                      <img src="covers/<?php echo $cover ?>" alt="" height="140">
+                    </td>
                     <td>
                       <a href="cat_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>
 
                       <form class="d-inline-block" action="cat_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <button type="DELETE" class="btn btn-danger" type="submit" value="DELETE">
-                        <i class="fas fa-trash-alt"></i>
+                          <i class="fas fa-trash-alt"></i>
                         </button>
                       </form>
                     </td>
                   </tr>
-               <?php } ?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

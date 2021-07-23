@@ -58,6 +58,27 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+.form-check-input {
+  margin-top: 2px !important;
+  margin-left: 0 !important;
+}
+
+.form-group label {
+  margin-bottom: 0 !important;
+}
+
+.form-check-label {
+  margin-left: 18px !important;
+}
+
+.table td img {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.cat-name {
+  text-transform: uppercase;
+}
 
 .subcat-ttl {
 	text-indent: 16px;
@@ -83,7 +104,7 @@
   font-weight: bold;
 }
 
-.table th, .table td {
+.table th, .table td,.form-group label,.form-control {
   font-size: 18px !important;
 }
 

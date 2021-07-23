@@ -46,42 +46,12 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="item_update.php" method="POST">
+                  <form class="forms-sample" action="item_update.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $items['id']?>">
-                    <div class="form-group row">
-                      <label for="name" class="col-sm-3 col-form-label">Item Name</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" id="name" value="<?php echo $items['name']?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="codeno" class="col-sm-3 col-form-label">Code No</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="codeno" class="form-control" value="<?php echo $items['codeno']?>">
-                      </div>
-                    </div>
-                    <!--<div class="form-group row">
-                      <label for="cover" class="col-sm-3 col-form-label">Photo</label>
-                      <div class="col-md-9">
-                        <input type="file" name="cover" class="form-control">
-                      </div>
-                    </div>-->
-                    <div class="form-group row">
-                      <label for="price" class="col-sm-3 col-form-label">Price</label>
-                      <div class="col-md-9">
-                        <input type="text" name="price" class="form-control" value="<?php echo $items['price']?>">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="discount" class="col-sm-3 col-form-label">Discount</label>
-                      <div class="col-md-9">
-                        <input type="text" name="discount" class="form-control" value="<?php echo $items['discount']?>">
-                      </div>
-                    </div>
                     <div class="form-group row">
                       <label for="subcategory_id" class="col-sm-3 col-form-label">Subcategory</label>
                       <div class="col-md-9">
-                        <select name="subcategory_id" class="form-control form-select" aria-label="Default select example">
+                        <select name="subcategory_id" id="subcategory_id" class="form-control form-select" aria-label="Default select example">
                           <?php
                           include("config/db_connect.php");
                           //for types
@@ -101,6 +71,63 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
                           <?php } ?>
 
                         </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-3 col-form-label">Item Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="name" class="form-control" id="name" value="<?php echo $items['name']?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="codeno" class="col-sm-3 col-form-label">Code No</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="codeno" id="codeno" class="form-control" value="<?php echo $items['codeno']?>">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row align-items-center">
+                        <label for="cover" class="col-sm-3 col-form-label">Cover</label>
+                        <div class="col-sm-9">
+                          <img src="covers/<?php echo $items['cover'] ?>" alt="" height="150">
+                          <input type="file" name="cover" id="cover" class="d-block mt-3">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="price" class="col-sm-3 col-form-label">Price</label>
+                      <div class="col-md-9">
+                        <input type="text" name="price" id="price" class="form-control" value="<?php echo $items['price']?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="discount" class="col-sm-3 col-form-label">Discount</label>
+                      <div class="col-md-9">
+                        <input type="text" name="discount" id="discount" class="form-control" value="<?php echo $items['discount']?>">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="sizeno_id" class="col-sm-3 col-form-label">ClothSize</label>
+                      <div class="col-md-9 d-flex align-items-center">
+                        <?php
+                          include("config/db_connect.php");
+                          $sql_type = "SELECT * FROM cloth_sizes";
+                          $statement = $conn->prepare($sql_type);
+                          $statement->execute();
+                          $cloth_sizes = $statement->fetchAll();
+
+                          foreach ($cloth_sizes as $cloth_size) { 
+                            $sizeno_id = $cloth_size['id'];
+                            $sizeno_name = $cloth_size['sizeno']; 
+                          ?>
+
+                        <div class="d-flex" style="width: 10%" ;>
+                          <input name="sizeno_id[1]" id="sizeno_id" class="form-check-input" type="checkbox" value="sizeno_id"<?php if( $sizeno_id == $items['sizeno_id']){ echo "checked"; } ?> ?> >
+                          <labe for="sizeno_id" class="form-check-label"><?php echo $sizeno_name; ?></label>
+                        </div>
+
+
+                        <?php } ?>
                       </div>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
