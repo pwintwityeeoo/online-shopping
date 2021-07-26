@@ -50,7 +50,7 @@ $subcategories = $statement->fetch(PDO::FETCH_ASSOC);
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="subcat_update.php" method="POST">
+                  <form class="forms-sample" action="subcat_update.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $subcategories['id'] ?>">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">SubCategory Name</label>
@@ -104,6 +104,15 @@ $subcategories = $statement->fetch(PDO::FETCH_ASSOC);
                           <?php } ?>
 
                         </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="row align-items-center">
+                        <label for="cover" class="col-sm-3 col-form-label">Cover</label>
+                        <div class="col-sm-9">
+                          <img src="covers/<?php echo $subcategories['cover'] ?>" alt="" height="150">
+                          <input type="file" name="cover" id="cover" class="d-block mt-3">
+                        </div>
                       </div>
                     </div>
 

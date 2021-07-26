@@ -51,6 +51,7 @@ $subcategories = $statement->fetchAll();
                     <th>Name</th>
                     <th>Type</th>
                     <th>Category</th>
+                    <th>Cover</th>
                     <th col-span="2"></th>
                   </tr>
                 </thead>
@@ -66,12 +67,15 @@ $subcategories = $statement->fetchAll();
 
                     $type_id = $subcategory['type_id'];
                     $type_name = $subcategory['type_name']; 
+
+                    $cover = $subcategory['cover'];
                   ?>
                     <tr>
                       <td><?php echo $i++; ?></td>
                       <td><?php echo $name ?></td>
                        <td><?php echo $type_name ?></td>
                       <td><?php echo $category_name ?></td>
+                      <td><img src="covers/<?php echo $cover ?>" alt="" height="140"></td>
                      
                       <td class="text-right">
                         <a href="subcat_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i></a>

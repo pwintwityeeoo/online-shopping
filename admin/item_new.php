@@ -141,6 +141,13 @@
                           <?php } ?>
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label for="sizeno_id" class="col-sm-3 col-form-label">Color</label>
+                      <div class="col-md-9 d-flex align-items-center">
+                          <div class="d-flex"  style="width: 10%";>
+                          </div>
+                      </div>
+                    </div>
                     <div class="text-right">
                     <button type="submit" class="btn btn-primary mr-2">Add</button>
                     <button class="btn btn-light">Cancel</button>

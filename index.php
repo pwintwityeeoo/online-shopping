@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -61,6 +62,24 @@
     </div>
     <div class="main-cat">
       <h2 class="fs-35">Shopping Category</h2>
+      <ul>
+    <?php
+    include("config/db_connect.php");
+    $sql = "SELECT * FROM items";
+    $statement = $pdo->prepare($sql);
+    $statement->execute();
+    
+
+    ?>   
+      <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)) :?>
+    <li><?php echo $row['name']; ?><br>
+    <?php echo $row['price']; ?><br>
+    <?php echo $row['discount']; ?><br>
+    <?php echo $row['codeno']; ?><br>
+    <img src="admin/covers/<?php echo $row['cover']; ?>"><br>
+  </li>
+    <?php endwhile; ?>
+  </ul>
       <ul>
         <li>
           <div class="content">

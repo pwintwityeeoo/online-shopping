@@ -110,3 +110,17 @@ $categories = $statement->fetchAll();
 </body>
 
 </html>
+
+<script type='text/javascript'>  
+ //<![CDATA[  
+ $(document).ready(function() {  
+  $('img').each(function(){  
+   var $img = $(this);  
+   var filename = $img.attr('src')  
+    if (typeof attr == typeof undefined || attr == false) {
+        $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));
+    }  
+  });  
+ });  
+ //]]>  
+</script>

@@ -41,7 +41,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <form class="forms-sample" action="subcat_add.php" method="POST">
+                  <form class="forms-sample" action="subcat_add.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group row">
                       <label for="name" class="col-sm-3 col-form-label">SubCategory Name</label>
                       <div class="col-sm-9">
@@ -96,8 +96,16 @@
                         </select>
                       </div>
                     </div>
+                    <div class="form-group row">
+                    <label for="cover" class="col-sm-3 col-form-label">Cover</label>
+                      <div class="col-sm-9">
+                      <input type="file" name="cover" id="cover" class="form-control" >
+                      </div>
+                    </div>
+                    <div class="text-right">
                     <button type="submit" class="btn btn-primary mr-2">Add</button>
                     <button class="btn btn-light">Cancel</button>
+                    </div>
                   </form>
                 </div>
               </div>
