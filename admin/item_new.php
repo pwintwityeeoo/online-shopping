@@ -94,60 +94,6 @@
                         <input type="text" name="discount" class="form-control">
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="sizeno_id" class="col-sm-3 col-form-label">ClothSize</label>
-                      <div class="col-md-9 d-flex align-items-center">
-                        <?php
-                          include("config/db_connect.php");
-                          $sql_type = "SELECT * FROM cloth_sizes";
-                          $statement = $conn->prepare($sql_type);
-                          $statement->execute();
-                          $cloth_sizes = $statement->fetchAll();
-                          
-
-                          foreach ($cloth_sizes as $cloth_size) { 
-                            $sizeno_id = $cloth_size['id'];
-                            $sizeno_name = $cloth_size['sizeno']; 
-                          ?>
-
-                          <div class="d-flex"  style="width: 10%";>
-                            <input name="sizeno_id" class="form-check-input" type="checkbox" value="<?php echo $sizeno_id; ?>">
-                            <labe for="sizeno_id" class="form-check-label"><?php echo $sizeno_name; ?></label>
-                          </div>
-
-                          <?php } ?>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="sizeno_id" class="col-sm-3 col-form-label">ShoeSize</label>
-                      <div class="col-md-9 d-flex align-items-center">
-                        <?php
-                          include("config/db_connect.php");
-                          $sql_type = "SELECT * FROM shoe_sizes";
-                          $statement = $conn->prepare($sql_type);
-                          $statement->execute();
-                          $shoe_sizes = $statement->fetchAll();
-
-                          foreach ($shoe_sizes as $shoe_size) { 
-                            $shoesize_id = $shoe_size['id'];
-                            $shoesize_name = $shoe_size['sizeno']; 
-                          ?>
-
-                          <div class="d-flex"  style="width: 10%";>
-                            <input name="" class="form-check-input" type="checkbox" value="<?php //echo $shoesize_id; ?>">
-                            <labe for="" class="form-check-label"><?php //echo $shoesize_name; ?></label>
-                          </div>
-
-                          <?php } ?>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="sizeno_id" class="col-sm-3 col-form-label">Color</label>
-                      <div class="col-md-9 d-flex align-items-center">
-                          <div class="d-flex"  style="width: 10%";>
-                          </div>
-                      </div>
-                    </div>
                     <div class="text-right">
                     <button type="submit" class="btn btn-primary mr-2">Add</button>
                     <button class="btn btn-light">Cancel</button>

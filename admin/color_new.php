@@ -1,10 +1,3 @@
-<?php
-include("config/db_connect.php");
-$sql = "SELECT * FROM colors";
-$statement = $pdo->prepare($sql);
-$statement->execute();
-$colors = $statement->fetchAll();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +11,6 @@ $colors = $statement->fetchAll();
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
 </head>
-
 <body>
   <div class="container-scroller">
     <!--header-->
@@ -34,43 +26,35 @@ $colors = $statement->fetchAll();
             <div class="col-md-12 grid-margin">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <h4 class="font-weight-bold mb-0">Types List</h4>
+                  <h4 class="font-weight-bold mb-0">Type New</h4>
                 </div>
-                <a href="type_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i></button></a>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="table-responsive col-md-12">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th col-span="2"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $i = 1;
-                  foreach ( $colors as $color ) {
-                    $size_id = $color['id'];
-                    $colorcode = $color['colorcode'];
-                  ?>
-                    <tr>
-                      <td><?php echo $i++; ?></td>
-                      <td><?php echo $colorcode ?></td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                  <form class="forms-sample" action="color_add.php" method="POST">
+                    <div class="form-group row">
+                      <label for="colorcode" class="col-sm-3 col-form-label">Choose Color</label>
+                      <div class="col-sm-9">
+                        <input type="color" id="inputName" class="form-control" name="colorcode">
+                        <span></span>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Add</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
         <!-- content-wrapper ends -->
     <!--footer-->
     <?php include("config/footer.php");?>
+
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

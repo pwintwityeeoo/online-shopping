@@ -5,7 +5,6 @@ $name = $_POST['name'];
 $codeno = $_POST['codeno'];
 $price = $_POST['price'];
 $discount = $_POST['discount'];
-
 $subcategory_id = $_POST['subcategory_id'];
 $cover = $_FILES['cover']['name'];
 $tmp = $_FILES['cover']['tmp_name'];

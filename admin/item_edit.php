@@ -106,30 +106,6 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
                         <input type="text" name="discount" id="discount" class="form-control" value="<?php echo $items['discount']?>">
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="sizeno_id" class="col-sm-3 col-form-label">ClothSize</label>
-                      <div class="col-md-9 d-flex align-items-center">
-                        <?php
-                          include("config/db_connect.php");
-                          $sql_type = "SELECT * FROM cloth_sizes";
-                          $statement = $conn->prepare($sql_type);
-                          $statement->execute();
-                          $cloth_sizes = $statement->fetchAll();
-
-                          foreach ($cloth_sizes as $cloth_size) { 
-                            $sizeno_id = $cloth_size['id'];
-                            $sizeno_name = $cloth_size['sizeno']; 
-                          ?>
-
-                        <div class="d-flex" style="width: 10%" ;>
-                          <input name="sizeno_id[1]" id="sizeno_id" class="form-check-input" type="checkbox" value="sizeno_id"<?php if( $sizeno_id == $items['sizeno_id']){ echo "checked"; } ?> ?> >
-                          <labe for="sizeno_id" class="form-check-label"><?php echo $sizeno_name; ?></label>
-                        </div>
-
-
-                        <?php } ?>
-                      </div>
-                    </div>
                     <button type="submit" class="btn btn-primary mr-2">UPDATE</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

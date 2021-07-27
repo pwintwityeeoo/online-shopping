@@ -9,18 +9,20 @@ if($cover) {
   }
 $price = $_POST['price'];
 $discount = $_POST['discount'];
-$sizeno_id = $_POST['sizeno_id'];
 $subcategory_id = $_POST['subcategory_id'];
-$sql = "INSERT INTO items (name, codeno, cover, price, discount,sizeno_id, subcategory_id) VALUES(:value1,:value2,:value3,:value4,:value5,:value6,:value7)";
+$sql = "INSERT INTO items (name, codeno, cover, price, discount, subcategory_id) VALUES(:value1,:value2,:value3,:value4,:value5,:value7)";
 $statement = $conn->prepare($sql);
 $statement->bindParam(':value1',$name);
 $statement->bindParam(':value2',$codeno);
 $statement->bindParam(':value3',$cover);
 $statement->bindParam(':value4',$price);
 $statement->bindParam(':value5',$discount);
-$statement->bindParam(':value6',$sizeno_id);
 $statement->bindParam(':value7',$subcategory_id);
 
 $statement->execute();
-header("location:item_list.php");
+$last_id = $conn->lastInsertId();
+
+if($statement->rowCount()){
+  header("location:item_detail.php?id=$last_id");
+}
 ?>

@@ -36,5 +36,11 @@
         <span class="menu-title">Accessory</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="accessory/subcat_list.php">
+      <i class="fas fa-sitemap"></i>
+        <span class="menu-title">Sizes</span>
+      </a>
+    </li>
   </ul>
 </nav>

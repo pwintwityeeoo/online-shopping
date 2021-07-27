@@ -58,6 +58,70 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+.sizes li:nth-child(odd) {
+  margin-right: 20px !important;
+}
+
+.sizeno {
+  width: 25px;
+  height: 25px;
+  background: gainsboro;
+  display: inline-block;
+  border-radius: 50px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 25px;
+}
+
+.btn.add-more {
+  background: ghostwhite;
+}
+#field {
+  margin-bottom: 15px;
+}
+#field input {
+  width: 70%;
+  padding: 0.688rem 0.8rem;
+  display: inline-block;
+  margin-right: 0.9%;
+}
+.btn.add-more,.remove-me {
+  padding: 0.875rem 2.1rem !important;
+  width: 28%;
+  box-sizing: border-box;
+  display: inline-block;
+}
+/*#field input:not(:first-child){
+  width: 85%;
+}*/
+.input-append input, .input-append select, .input-append .uneditable-input {
+  width: 88% !important;
+  margin-bottom: 10px;
+  padding: 1.313rem 1rem;
+}
+
+.input-append, .input-prepend {
+  display:block !important;
+}
+.detail {
+  display: flex;
+  align-items: center;
+}
+.codeno {
+  font-size: 1.3rem !important;
+}
+.detail ul {
+  font-size: 1.4rem !important;
+  padding-left: 2rem;
+}
+.detail ul li:first-child {
+  text-align: center;
+  background: #ccc;
+  padding: 0 10px;
+}
+.card-img-top {
+  width: 25% !important;
+}
 .form-check-input {
   margin-top: 2px !important;
   margin-left: 0 !important;
