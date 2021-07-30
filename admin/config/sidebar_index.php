@@ -7,7 +7,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link d-flex" href="categories/cat_list.php">
+      <a class="nav-link d-flex" href="subcat_list.php">
       <i class="fas fa-tags"></i>
         <span class="menu-title">All Categories</span>
       </a>
@@ -37,9 +37,15 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="accessory/subcat_list.php">
+      <a class="nav-link" href="size_list.php">
       <i class="fas fa-sitemap"></i>
         <span class="menu-title">Sizes</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="item_list.php">
+      <i class="fas fa-tags"></i>
+        <span class="menu-title">Items</span>
       </a>
     </li>
   </ul>

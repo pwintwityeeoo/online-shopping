@@ -58,6 +58,45 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+/*color*/
+.color,
+.color input {
+  position: relative;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+.color {
+  display: inline-block;
+  margin: 3px;
+}
+.color input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.color i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(http://cdn.nicolapps.ch/images/uploads/1478199301.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0;
+  transition: 0.15s opacity ease-in-out;
+}
+.color input:checked + i {
+  opacity: 1;
+}
+
 .sizes li:nth-child(odd) {
   margin-right: 20px !important;
 }
@@ -107,8 +146,20 @@
   display: flex;
   align-items: center;
 }
+.item-img {
+  position: relative;
+}
 .codeno {
-  font-size: 1.3rem !important;
+  font-size: 1rem !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: #1e1eb9;
+  border: 2px solid #ffffff;
+  color: #fff;
+  text-align: center;
+  line-height: 46px;
+  position: absolute;
 }
 .detail ul {
   font-size: 1.4rem !important;

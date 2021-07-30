@@ -1,4 +1,9 @@
-
+<?php
+  include("config/db_connect.php");
+  $sql = "SELECT subcategories.*, types.id as type_id,types.name as type_name FROM subcategories INNER JOIN types ON subcategories.type_id=types.id  ORDER BY types.id";
+  $statement = $pdo->prepare($sql);
+  $statement->execute();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -60,26 +65,59 @@
         </div>
       </div>
     </div>
+    <div class="subcat">
+      <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)) :?>
+      <div class="subcat-list" style="width:24%;display:inline-block;margin-bottom:30px;">
+        <?php if($row['type_id'] == 1){ ?>
+        <div class="text-center">
+          <a href="indexfashion.php?id=<?php echo $row['id'] ?>">
+            <img src="admin/covers/<?php echo $row['cover']; ?>">
+          </a>
+          <div class="product-detail">
+            <div class="price">
+              <p class="discount mb-0"><?php echo $row['name']; ?></p>
+              <?php echo $row['type_name']; ?>
+            </div>
+          </div>
+        </div>
+        <?php }elseif($row['type_id'] == 2){?>          
+          <div class="text-center">
+          <a href="indexfashion.php?id=<?php echo $row['id'] ?>">
+            <img src="admin/covers/<?php echo $row['cover']; ?>">
+          </a>
+          <div class="product-detail">
+            <div class="price">
+              <p class="discount mb-0"><?php echo $row['name']; ?></p>
+              <?php echo $row['type_name']; ?>
+            </div>
+          </div>
+        </div>
+        <?php  }else{
+      } ?>
+      </div>
+      <?php endwhile; ?>
+    </div>
+    <div class="subcat">
+      <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)) :?>
+      <div class="subcat-list-men">
+        <div class="text-center">
+          <?php if($row['type_id'] == 2){ ?>
+          <a href="#">
+            <img src="admin/covers/<?php echo $row['cover']; ?>">
+          </a>
+          <div class="product-detail">
+            <div class="price">
+              <p class="discount mb-0"><?php echo $row['name']; ?></p>
+              <?php echo $row['type_name']; ?>
+            </div>
+          </div>
+          <?php } ?>
+        </div>
+      </div>
+      <?php endwhile; ?>
+    </div>
     <div class="main-cat">
       <h2 class="fs-35">Shopping Category</h2>
-      <ul>
-    <?php
-    include("config/db_connect.php");
-    $sql = "SELECT * FROM items";
-    $statement = $pdo->prepare($sql);
-    $statement->execute();
-    
-
-    ?>   
-      <?php while($row = $statement->fetch(PDO::FETCH_ASSOC)) :?>
-    <li><?php echo $row['name']; ?><br>
-    <?php echo $row['price']; ?><br>
-    <?php echo $row['discount']; ?><br>
-    <?php echo $row['codeno']; ?><br>
-    <img src="admin/covers/<?php echo $row['cover']; ?>"><br>
-  </li>
-    <?php endwhile; ?>
-  </ul>
       <ul>
         <li>
           <div class="content">

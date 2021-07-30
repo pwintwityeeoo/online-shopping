@@ -45,7 +45,6 @@
                         <select name="subcategory_id" class="form-control form-select" aria-label="Default select example">
                           <?php
                           include("config/db_connect.php");
-                          //for types
                           $sql_type = "SELECT * FROM subcategories";
                           $statement = $conn->prepare($sql_type);
                           $statement->execute();

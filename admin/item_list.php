@@ -75,7 +75,7 @@ $items = $statement->fetchAll();
                     <td><a href="item_detail.php?id=<?php echo $id ?>"><?php echo $name ?></a></td>
                     <td><?php echo $codeno ?></td>
                     <td>
-                    <img src="covers/<?php echo $cover ?>" alt="" height="140">
+                    <img src="covers/<?php echo $cover ?>" alt="">
                     </td>
                     <td><?php echo $price ?></td>
                     <td class="prd-discount"><?php echo $discount ?></td>

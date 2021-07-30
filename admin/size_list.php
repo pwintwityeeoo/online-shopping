@@ -1,9 +1,10 @@
 <?php
 include("config/db_connect.php");
-$sql = "SELECT sizes.*, subcategories.id as subcategory_id, subcategories.name as subcategory_name FROM sizes INNER JOIN subcategories ON sizes.subcategory_id = subcategories.id";
+$sql = "SELECT subcategories.* FROM subcategories 
+INNER JOIN sizes ON subcategories.id=sizes.subcategory_id GROUP BY sizes.subcategory_id";
 $statement = $pdo->prepare($sql);
 $statement->execute();
-$sizes = $statement->fetchAll();
+$subcategories = $statement->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -53,27 +54,34 @@ $sizes = $statement->fetchAll();
           </div>
           <div class="row">
             <?php
-            foreach ($sizes as $size) {
-              $id = $size['id'];
-              $name = $size['name'];
-              $subcategory_id = $size['subcategory_id'];
-              $subcategory_name = $size['subcategory_name'];
+            foreach ($subcategories as $subcategorie) {
+              $id = $subcategorie['id'];
+              $name = $subcategorie['name'];
             ?>
             <div class="col-sm-6">
-              <div class="card">
+              <div class="card mb-2">
                 <div class="sizes">
                   <div class="bg-light p-3">
                     <div class="subcat-name d-flex justify-content-between">
-                      <span><?php echo $subcategory_name ?></span>
+                      <span><?php echo $name ?></span>
                       <a href="size_edit.php?id=<?php echo $id ?>">
                         <span><i class="fas fa-cogs"></i></span>
                       </a>
                     </div>
-                    <p>
+                    <?php 
+                    $sql="SELECT * FROM sizes WHERE subcategory_id=:value1";
+                    $statement = $pdo->prepare($sql);
+                    $statement->bindParam(':value1',$id);
+                    $statement->execute();
+                    $sizes = $statement->fetchAll();
+                    foreach($sizes as $size){
+                      $size_id = $size['id'];
+                      $size_name = $size['name'];
+                    ?>
                       <span class="sizeno">
-                        <?php echo $name ?>
+                        <?php echo $size_name; ?>
                       </span>
-                    </p>
+                 <?php  } ?>
                   </div>
 
                 </div>

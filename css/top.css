@@ -12,6 +12,10 @@
   transform: translateX(-50%);
 }
 
+a {
+  text-decoration: none !important;
+}
+
 /*slider*/
 .min-container {
   width: 100%;

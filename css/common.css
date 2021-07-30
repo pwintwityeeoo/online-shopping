@@ -221,7 +221,7 @@ h2 span.lady-allprd {
 	text-align: center;
 }
 
-.lady-cat ul li .product-detail {
+.product-detail {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -233,7 +233,7 @@ h2 span.lady-allprd {
 	text-decoration: line-through;
 }*/
 
-.lady-cat ul li .discount {
+.discount {
 	color: #ff3849;
 }
 

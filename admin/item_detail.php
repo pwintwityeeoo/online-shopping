@@ -1,7 +1,11 @@
 <?php
 include("config/db_connect.php");
 $id = $_GET['id'];
-$sql = "SELECT * FROM items WHERE id=:value1";
+$sql = "SELECT items.*,subcategories.name as sname,categories.name as cname,types.name as tname FROM items 
+INNER JOIN subcategories ON items.subcategory_id=subcategories.id
+INNER JOIN categories ON subcategories.category_id=categories.id
+INNER JOIN types ON categories.type_id=types.id 
+WHERE items.id=:value1";
 $statement = $pdo->prepare($sql);
 $statement->bindParam(':value1',$id);
 $statement->execute();
@@ -16,6 +20,7 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
   <meta name="viewport" content="initial-scale=1">
   <title>7DAYS Online Shopping Admin</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/common.css">
   <link rel="stylesheet" href="css/all.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
@@ -38,28 +43,28 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
               <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center" style="width: 100%;justify-content: space-between;">
                   <h3 class="font-weight-bold mb-0">Item</h3>
-                  <div class="text-right">
-                    <a href="item_new.php"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i><span class="d-block">Add Stock</span></button></a>
+                  <div class="text-right d-flex">
+                    <a href="stock_new.php?id=<?= $id ?>"><button type="button" class="btn btn-light"><i class="fas fa-plus"></i><span class="d-block">Add Stock</span></button></a>
                     <a href="item_edit.php?id=<?php echo $id ?>" class="btn btn-primary"><i class="fas fa-edit"></i><span class="d-block">Item Edit</span></a>
 
                     <form class="d-inline-block" action="item_delete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
                       <input type="hidden" name="id" value="<?php echo $id; ?>">
                       <button type="DELETE" class="btn btn-danger" type="submit" value="DELETE ITEM">
-                        <i class="fas fa-trash-alt"></i><span class="d-block">Item Delete</span>
+                        <i class="fas fa-trash-alt"></i><span class="d-block">Item</span>
                       </button>
                     </form>
                   </div>
                 </div>
               </div>
               <div class="detail mt-3">
-                <div>
+                <div style="width:30%;">
                   <p class="codeno mt-2"><?php echo $items['codeno'] ?></p>
-                  <img src="covers/<?php echo $items['cover'] ?>" class="img-fluid" alt="" height="150">
+                  <img src="covers/<?php echo $items['cover'] ?>" class="img-fluid" alt="" height="150" style="width:100%;">
                 </div>
                 <ul class="list-unstyled">
-                    <li><?php echo $items['subcategory_id'] ?></li>
-                    <li><?php echo $items['price']."MMK" ?></li>
-                    <li class="prd-discount"><?php echo $items['discount']."MMK" ?></li>
+                    <li class="text-white"><?php echo $items['sname'] ?></li>
+                    <li class="discount"><?php echo $items['discount']."MMK" ?></li>
+                    <li class="normal-price"><?php echo $items['price']."MMK" ?></li>
                   </ul>   
               </div>
               <div class="table-responsive col-md-12">
@@ -74,9 +79,15 @@ $items = $statement->fetch(PDO::FETCH_ASSOC);
                   </thead>
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td>
+                        
+                      </td>
+                      <td>
+
+                      </td>
+                      <td>
+                        
+                      </td>
                     </tr>
                   </tbody>
                 </table>

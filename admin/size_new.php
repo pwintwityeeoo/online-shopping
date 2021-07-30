@@ -40,6 +40,7 @@
               <div class="card" style="width: 80% !important; min-width: auto !important;">
                 <div class="card-body">
                   <form action="size_add.php" method="post">
+                    
                     <h4 class="mb-3">Create New Size</h4>
                     <div class="control-group">
                       <select name="subcategory_id" class="form-control form-select" aria-label="Default select example">
@@ -66,7 +67,7 @@
                       <label class="control-label" for="field1"></label>
                       <div class="controls" id="profs">
                         <div id="field">
-                          <input autocomplete="off" class="input" id="field1" name="name" type="text" placeholder="Fill Size" data-items="8" />
+                          <input autocomplete="off" class="input" id="field1" name="name[]" type="text" placeholder="Fill Size" data-items="8" />
                           <button id="b1" class="btn add-more" type="button">+ AddSize</button>
                         </div>
                         <div class="text-right">
@@ -107,9 +108,9 @@ $(document).ready(function() {
     var addto = "#field" + next;
     var addRemove = "#field" + (next);
     next = next + 1;
-    var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+    var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="name[]' + next + '" type="text">';
     var newInput = $(newIn);
-    var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >- Remove</button><div id="field"></div>';
+    var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >X Remove</button><div id="field"></div>';
     var removeButton = $(removeBtn);
     $(addto).after(newInput);
     $(addRemove).after(removeButton);
